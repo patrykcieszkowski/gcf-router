@@ -1,0 +1,39 @@
+{
+  "name": "gcf-router",
+  "version": "0.0.1",
+  "description": "HTTP(s) Router addon for Google Cloud Functions",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrykcieszkowski/gcf-router.git"
+  },
+  "keywords": [
+    "router",
+    "gcf",
+    "google",
+    "google-cloud-functions",
+    "cloud",
+    "serverless"
+  ],
+  "author": "Patryk Cieszkowski",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/patrykcieszkowski/gcf-router/issues"
+  },
+  "homepage": "https://github.com/patrykcieszkowski/gcf-router#readme",
+  "devDependencies": {
+    "babel-core": "^6.18.0",
+    "babel-loader": "^6.2.6",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-3": "^6.17.0",
+    "ignore-loader": "^0.1.2",
+    "json-loader": "^0.5.4",
+    "webpack": "^1.13.3",
+    "webpack-node-externals": "^1.5.4",
+    "write-file-webpack-plugin": "^4.0.2"
+  }
+}
