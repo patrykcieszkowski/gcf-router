@@ -47,6 +47,11 @@ Router.prototype.handle = function(req, res, next)
     return responder.internalError(res)
   }
 
+  if (next)
+  {
+    return next(handler)
+  }
+
   return handler(req, res)
 }
 
