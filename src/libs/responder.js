@@ -5,6 +5,22 @@ function accessDenied(res)
   })
 }
 
+function notFound(res)
+{
+  return res.status(404).json({
+    message: "Not Found"
+  })
+}
+
+function internalError(res)
+{
+  return res.status(500).json({
+    message: "Internal Server Error"
+  })
+}
+
 export default {
-  accessDenied
+  accessDenied,
+  notFound,
+  internalError
 }
