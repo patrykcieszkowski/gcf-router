@@ -1,25 +1,22 @@
 import responder from './libs/responder'
 
-var __config = {}
-var __controllerList = {}
-
 function Router(config, controllers)
 {
-  __config = config
-  __controllerList = controllers
+  this.config = config
+  this.controllerList = controllers
 }
 
 Router.prototype.handle = function(req, res, next)
 {
   const routerGroup = req.originalUrl.replace(/^\/([^\/]*).*$/, '$1')
 
-  if (!__config[routerGroup])
+  if (!this.config[routerGroup])
   {
     return responder.notFound(res)
   }
 
-  const matchedRoute = __config[routerGroup].filter((item) => matchRoute(item.route, req.path))[0]
-  if (!__config[routerGroup])
+  const matchedRoute = this.config[routerGroup].filter((item) => matchRoute(item.route, req.path))[0]
+  if (!this.config[routerGroup])
   {
     return responder.notFound(res)
   }
@@ -36,7 +33,7 @@ Router.prototype.handle = function(req, res, next)
     return responder.internalError(res)
   }
 
-  const controller = __controllerList[method.controller]
+  const controller = this.controllerList[method.controller]
   if (!controller)
   {
     console.error(`Error: couldn't find '${method.controller}' controller!`);
