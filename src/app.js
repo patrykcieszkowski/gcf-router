@@ -15,39 +15,39 @@ Router.prototype.handle = function(req, res, next)
 
   if (!__config[routerGroup])
   {
-    return responder.accessDenied(res)
+    return responder.notFound(res)
   }
 
   const matchedRoute = __config[routerGroup].filter((item) => matchRoute(item.route, req.path))[0]
   if (!__config[routerGroup])
   {
-    return responder.accessDenied(res)
+    return responder.notFound(res)
   }
 
   const method = matchedRoute.methods[req.method]
   if (!method)
   {
-    return responder.accessDenied(res)
+    return responder.notFound(res)
   }
 
   if (!method.controller || !method.handler)
   {
     console.error("Error: controller and handler has to be defined!");
-    return responder.accessDenied(res)
+    return responder.internalError(res)
   }
 
   const controller = __controllerList[method.controller]
   if (!controller)
   {
     console.error(`Error: couldn't find '${method.controller}' controller!`);
-    return responder.accessDenied(res)
+    return responder.internalError(res)
   }
 
   const handler = controller[method.handler]
   if (!handler)
   {
     console.error(`Error: couldn't find '${method.handler}' function!`);
-    return responder.accessDenied(res)
+    return responder.internalError(res)
   }
 
   return handler(req, res)
